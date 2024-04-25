@@ -1,0 +1,62 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+#data loading
+train=pd.read_csv('Train2.csv')
+test=pd.read_csv('Test.csv')
+print(train)
+ytrain=train['target']
+print(ytrain)
+xtrain=train[['feature_1','feature_2','feature_3','feature_4','feature_5']]
+print(xtrain)
+print(test)
+from sklearn.linear_model import LinearRegression
+model=LinearRegression()
+model.fit(xtrain,ytrain)
+#Testing the model
+air_index=model.predict(test)
+print('The air quality indices are:')
+print(air_index)
+
+#Prediction based on feature_1
+plt.scatter(xtrain['feature_1'],ytrain,label='Training set of feature_1')
+plt.plot(test['feature_1'],air_index,label='Prediction of air quality index ased on feature_1',color='purple')
+plt.title('This model predicts the air quality index of Delhi(on the basis of feature 1)')
+plt.legend()
+plt.show()
+#Prediction based on feature_2
+plt.scatter(xtrain['feature_2'],ytrain,label='Training set of feature_2')
+plt.plot(test['feature_2'],air_index,label='Prediction of air quality index ased on feature_2',color='red')
+plt.title('This model predicts the air quality index of Delhi(on the basis of feature 2)')
+plt.legend()
+plt.show()
+#Prediction based on feature_3
+plt.scatter(xtrain['feature_3'],ytrain,label='Training set of feature_3')
+plt.plot(test['feature_3'],air_index,label='Prediction of air quality index ased on feature_3',color='violet')
+plt.title('This model predicts the air quality index of Delhi(on the basis of feature 3)')
+plt.legend()
+plt.show()
+#Prediction based on feature_4
+plt.scatter(xtrain['feature_4'],ytrain,label='Training set of feature_4')
+plt.plot(test['feature_4'],air_index,label='Prediction of air quality index ased on feature_4',color='yellow')
+plt.title('This model predicts the air quality index of Delhi(on the basis of feature 4)')
+plt.legend()
+plt.show()
+plt.scatter(xtrain['feature_5'],ytrain,label='Training set of feature_5')
+plt.plot(test['feature_5'],air_index,label='Prediction of air quality index ased on feature_5',color='green')
+plt.title('This model predicts the air quality index of Delhi(on the basis of feature 5)')
+plt.legend()
+plt.show()
+
+plt.figure(figsize=(20,10))
+plt.scatter(xtrain['feature_1'],ytrain,label='Training set of feature_1')
+plt.scatter(xtrain['feature_2'],ytrain,label='Training set of feature_2')
+plt.scatter(xtrain['feature_3'],ytrain,label='Training set of feature_3')
+plt.scatter(xtrain['feature_4'],ytrain,label='Training set of feature_4')
+plt.scatter(xtrain['feature_5'],ytrain,label='Training set of feature_5')
+plt.plot(test,air_index,label='Prediction of air quality index')
+plt.legend()
+plt.show()
+#Accuracy of the model
+print('The accuracy of the model is:')
+model.score(xtrain,ytrain)
